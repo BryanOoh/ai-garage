@@ -1,0 +1,82 @@
+/*
+ * Design tokens — inspired by DESIGN.md (xAI canvas system).
+ * AI Garage adds a light theme; see DESIGN.md § "AI Garage implementation".
+ */
+
+:root {
+  --bg:        #0a0a0a;
+  --bg2:       #191919;
+  --bg3:       #1a1c20;
+  --border:    #212327;
+  --border-h:  rgba(255, 255, 255, 0.25);
+  --tp:        #ffffff;
+  --ts:        #dadbdf;
+  --tt:        #7d8187;
+  --ac:        #ff7a17;
+  --ac-soft:   #ffc285;
+  --ac-dim:    rgba(255, 122, 23, 0.1);
+  --ac-b:      rgba(255, 122, 23, 0.22);
+  --text-dim:  #7d8187;
+  --sb-hover:  rgba(255, 255, 255, 0.04);
+
+  --sans:  var(--font-dm-sans), sans-serif;
+  --serif: var(--font-instrument-serif), serif;
+  --mono:  var(--font-dm-mono), monospace;
+
+  --nav-w:      200px;
+  --hdr-h:      50px;
+  --hdr-bg:     rgba(10, 10, 10, 0.92);
+  --btn-p-bg:   #ffffff;
+  --btn-p-fg:   #0a0a0a;
+  --st:         #ffc285;
+  --fn:         #a0c3ec;
+  --code-ink:   #dadbdf;
+
+  --focus-ring: 2px solid var(--tp);
+  --focus-offset: 2px;
+
+  /* Setup code blocks — IDE-style (dark canvas) */
+  --syn-plain: #d4d4d4;
+  --syn-kw:    #569cd6;
+  --syn-st:    #ce9178;
+  --syn-comp:  #4fc1ff;
+  --syn-prop:  #4ec9b0;
+  --syn-cm:    #6a9955;
+  --syn-op:    #d4d4d4;
+  --syn-cmd:   #d4d4d4;
+  --syn-flag:  #4ec9b0;
+}
+
+[data-theme="light"] {
+  --bg:       #fafaf7;
+  --bg2:      #ffffff;
+  --bg3:      #f0f0ee;
+  --border:   #e4e5e9;
+  --border-h: rgba(10, 10, 10, 0.18);
+  --tp:       #0a0a0a;
+  --ts:       #363a3f;
+  --tt:       #7d8187;
+  --ac:       #e06510;
+  --ac-soft:  #c45a20;
+  --ac-dim:   rgba(224, 101, 16, 0.08);
+  --ac-b:     rgba(224, 101, 16, 0.2);
+  --hdr-bg:   rgba(250, 250, 247, 0.92);
+  --btn-p-bg: #0a0a0a;
+  --btn-p-fg: #fafaf7;
+  --st:       #b85a18;
+  --fn:       #4a7ab5;
+  --code-ink: #363a3f;
+  --text-dim: #7d8187;
+  --sb-hover: rgba(0, 0, 0, 0.04);
+
+  /* Setup code blocks — agentation-style light reference */
+  --syn-plain: #000000;
+  --syn-kw:    #2c44b1;
+  --syn-st:    #d23669;
+  --syn-comp:  #001080;
+  --syn-prop:  #2d9494;
+  --syn-cm:    #6e7781;
+  --syn-op:    #000000;
+  --syn-cmd:   #000000;
+  --syn-flag:  #2d9494;
+}

@@ -1,0 +1,80 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:  var(--bg);
+  color:       var(--tp);
+  font-family: var(--sans);
+  font-size:   16px;
+  line-height: 1.5;
+  font-weight: 400;
+  min-height:  100vh;
+}
+
+h1 {
+  font-family:    var(--serif);
+  font-size:      clamp(34px, 4.5vw, 50px);
+  font-weight:    400;
+  line-height:    1.1;
+  letter-spacing: -.025em;
+  color:          var(--tp);
+  margin-bottom:  24px;
+}
+h1 em { font-style: italic; color: var(--text-dim); }
+
+h2 {
+  font-family:    var(--serif);
+  font-size:      26px;
+  font-weight:    400;
+  line-height:    1.25;
+  letter-spacing: -.018em;
+  color:          var(--tp);
+  margin-bottom:  14px;
+}
+h2 em { font-style: italic; color: var(--text-dim); }
+
+p { color: var(--ts); line-height: 1.5; margin-bottom: 14px; font-weight: 400; }
+p:last-child { margin-bottom: 0; }
+p strong { color: var(--tp); font-weight: 400; }
+
+code {
+  font-family:   var(--mono);
+  font-size:     12px;
+  color:         var(--code-ink);
+  background:    var(--bg3);
+  padding:       1px 6px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 2px; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.25; }
+}
+
+/* ── Focus (keyboard) ── */
+:focus { outline: none; }
+:focus-visible {
+  outline:        var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.skip-link {
+  position: absolute;
+  left:     -9999px;
+  top:      0;
+  z-index:  200;
+  padding:  10px 16px;
+  background: var(--btn-p-bg);
+  color:      var(--btn-p-fg);
+  font-size:  14px;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus-visible {
+  left: 0;
+}

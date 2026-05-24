@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Garage
 
-## Getting Started
+A Next.js site showcasing Bryan's AI side projects — starting with [PixelAgent](/pixelagent), a live-DOM annotation tool for vibe coders.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **CSS** — design tokens in `app/styles/` (no Tailwind)
+- **Fonts** — [DM Sans](https://fonts.google.com/specimen/DM+Sans) (site-wide), [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) + [DM Mono](https://fonts.google.com/specimen/DM+Mono) (PixelAgent pages)
+
+Design tokens live in `app/styles/tokens.css` (xAI-inspired canvas system with a Garage-specific light theme).
+
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env.local   # optional — set SITE_URL and GitHub URLs
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical / Open Graph base URL |
+| `NEXT_PUBLIC_GITHUB_AI_GARAGE_URL` | This repo on GitHub |
+| `NEXT_PUBLIC_GITHUB_PIXELAGENT_URL` | PixelAgent package repo |
+| `NEXT_PUBLIC_PIXELAGENT_DOCS_URL` | Docs URL (omit until published) |
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Production server |
+| `npm run lint` | ESLint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+  _components/     Shared UI (header, theme toggle)
+  pixelagent/      Product landing page
+  styles/          CSS modules by concern (tokens, garage, pixelagent)
+lib/               Site config, theme helpers, metadata builders
+```
 
-## Deploy on Vercel
+## CI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+GitHub Actions runs `lint` and `build` on push/PR to `main` (see `.github/workflows/ci.yml`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy (Vercel)
+
+1. Push this repo to GitHub and confirm the **CI** workflow passes on `main`.
+2. Import the repo at [vercel.com/new](https://vercel.com/new) (Framework: **Next.js**).
+3. Add environment variables (Production + Preview):
+
+   | Variable | Example |
+   |----------|---------|
+   | `NEXT_PUBLIC_SITE_URL` | `https://your-project.vercel.app` |
+   | `NEXT_PUBLIC_GITHUB_AI_GARAGE_URL` | `https://github.com/bryanoh/ai-garage` |
+   | `NEXT_PUBLIC_GITHUB_PIXELAGENT_URL` | `https://github.com/bryanoh/pixelagent` |
+
+4. Deploy, then set `NEXT_PUBLIC_SITE_URL` to the final domain and **Redeploy** if the URL changed.
+
+Pushes to `main` deploy to production; pull requests get preview URLs automatically.
