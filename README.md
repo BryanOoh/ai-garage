@@ -29,6 +29,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_GITHUB_AI_GARAGE_URL` | This repo on GitHub |
 | `NEXT_PUBLIC_GITHUB_PIXELAGENT_URL` | PixelAgent package repo |
 | `NEXT_PUBLIC_PIXELAGENT_DOCS_URL` | Docs URL (omit until published) |
+| `NEXT_PUBLIC_PIXELAGENT_PAGE_ENABLED` | Set to `true` to open `/pixelagent` (default: closed) |
 
 ## Scripts
 

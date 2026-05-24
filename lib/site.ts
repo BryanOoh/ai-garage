@@ -22,6 +22,10 @@ export const GITHUB_PIXELAGENT_URL = env(
 /** Set when docs are live; empty string hides the docs link */
 export const PIXELAGENT_DOCS_URL = env("NEXT_PUBLIC_PIXELAGENT_DOCS_URL", "");
 
+/** Set to "true" to allow /pixelagent; otherwise redirects home */
+export const PIXELAGENT_PAGE_ENABLED =
+  env("NEXT_PUBLIC_PIXELAGENT_PAGE_ENABLED", "false") === "true";
+
 export const pixelagentSections = [
   { id: "overview", label: "The problem" },
   { id: "what", label: "What it does" },

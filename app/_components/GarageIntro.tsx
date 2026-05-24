@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PORTFOLIO_URL } from "@/lib/site";
+import { PIXELAGENT_PAGE_ENABLED, PORTFOLIO_URL } from "@/lib/site";
 import IntroStamp from "./IntroStamp";
 
 export default function GarageIntro() {
@@ -17,8 +17,13 @@ export default function GarageIntro() {
         <p>
           I&apos;m a designer by nature, drawn to building polished products that
           help people move faster toward something useful. This is where I share
-          the tools I create — <Link href="/pixelagent">PixelAgent</Link> is the
-          first.{" "}
+          the tools I create —{" "}
+          {PIXELAGENT_PAGE_ENABLED ? (
+            <Link href="/pixelagent">PixelAgent</Link>
+          ) : (
+            <span className="garage-intro-pa-locked">PixelAgent</span>
+          )}{" "}
+          is the first.{" "}
           <a href={PORTFOLIO_URL} target="_blank" rel="noopener noreferrer">
             Portfolio
           </a>

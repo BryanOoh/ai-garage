@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import SiteHeader from "../_components/SiteHeader";
 import SidebarNav from "./_components/SidebarNav";
 import MobileToc from "./_components/MobileToc";
@@ -6,9 +7,14 @@ import SetupCodeBlocks from "./_components/SetupCodeBlocks";
 import {
   GITHUB_PIXELAGENT_URL,
   PIXELAGENT_DOCS_URL,
+  PIXELAGENT_PAGE_ENABLED,
 } from "@/lib/site";
 
 export default function PixelAgentPage() {
+  if (!PIXELAGENT_PAGE_ENABLED) {
+    redirect("/");
+  }
+
   const docsReady = PIXELAGENT_DOCS_URL.length > 0;
 
   return (

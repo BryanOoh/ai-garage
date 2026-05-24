@@ -151,6 +151,61 @@
   background: var(--sb-hover);
 }
 
+.garage-cell--locked {
+  cursor:     default;
+  position:   relative;
+  opacity:    0.65;
+}
+.garage-cell--locked:hover {
+  background: transparent;
+}
+.garage-cell--locked::before {
+  content:        "";
+  position:       absolute;
+  inset:          0;
+  pointer-events: none;
+  background:     repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.018) 10px,
+    rgba(255, 255, 255, 0.018) 11px
+  );
+}
+
+.closed-chip {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           6px;
+  font-family:   var(--mono);
+  font-size:     11px;
+  font-weight:   400;
+  letter-spacing: 0.06em;
+  color:         var(--tt);
+  background:    var(--bg3);
+  border:        1px solid var(--border);
+  padding:       5px 12px;
+  border-radius: 9999px;
+  flex-shrink:   0;
+}
+.closed-chip svg {
+  opacity: 0.7;
+}
+
+.garage-intro-pa-locked {
+  color: var(--tt);
+}
+
+[data-theme="light"] .garage-cell--locked::before {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.04) 10px,
+    rgba(0, 0, 0, 0.04) 11px
+  );
+}
+
 .garage-cell--soon {
   display:        flex;
   flex-direction: column;
