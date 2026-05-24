@@ -68,6 +68,63 @@
   letter-spacing: 0.04em;
 }
 
+.intro-stamp {
+  display:     inline-flex;
+  align-items: baseline;
+  gap:         0;
+}
+
+.intro-stamp-time {
+  display:   inline-block;
+  color:     var(--ts);
+  animation: stamp-time-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.intro-stamp-sep {
+  display:     inline-block;
+  margin:      0 0.4em;
+  color:       var(--tt);
+  animation:   stamp-sep-pulse 1s ease-in-out infinite;
+}
+
+.intro-stamp-place {
+  color: var(--tt);
+}
+
+.intro-stamp-placeholder {
+  display:   inline-block;
+  animation: stamp-placeholder 1.2s ease-in-out infinite;
+}
+
+@keyframes stamp-time-in {
+  from {
+    opacity:   0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity:   1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stamp-sep-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes stamp-placeholder {
+  0%, 100% { opacity: 0.25; }
+  50%      { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-stamp-time,
+  .intro-stamp-sep,
+  .intro-stamp-placeholder {
+    animation: none;
+  }
+}
+
 .garage-grid {
   flex:                  1;
   display:               grid;
