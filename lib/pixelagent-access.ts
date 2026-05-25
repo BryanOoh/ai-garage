@@ -16,8 +16,8 @@ export function isValidPixelagentPreviewKey(key: string | undefined): boolean {
   return Boolean(secret && key && key === secret);
 }
 
-/** Public launch or preview cookie from ?pixelagent_preview=… */
-export async function hasPixelagentAccess(): Promise<boolean> {
+/** Unlocks Install+ sections (page itself is always public). */
+export async function hasPixelagentFullAccess(): Promise<boolean> {
   if (PIXELAGENT_PAGE_ENABLED) return true;
   const expected = previewCookieValue();
   if (!expected) return false;

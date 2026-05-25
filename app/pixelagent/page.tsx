@@ -1,30 +1,27 @@
-import { redirect } from "next/navigation";
 import SiteHeader from "../_components/SiteHeader";
 import SidebarNav from "./_components/SidebarNav";
 import MobileToc from "./_components/MobileToc";
 import AnnotationSamples from "./_components/AnnotationSamples";
+import SectionLock from "./_components/SectionLock";
 import SetupCodeBlocks from "./_components/SetupCodeBlocks";
-import { hasPixelagentAccess } from "@/lib/pixelagent-access";
+import { hasPixelagentFullAccess } from "@/lib/pixelagent-access";
 import {
   GITHUB_PIXELAGENT_URL,
   PIXELAGENT_DOCS_URL,
 } from "@/lib/site";
 
 export default async function PixelAgentPage() {
-  if (!(await hasPixelagentAccess())) {
-    redirect("/");
-  }
-
+  const fullAccess = await hasPixelagentFullAccess();
   const docsReady = PIXELAGENT_DOCS_URL.length > 0;
 
   return (
     <>
       <SiteHeader homeHref="/" homeLabel="AI Garage" />
 
-      <MobileToc />
+      <MobileToc fullAccess={fullAccess} />
 
       <div className="layout">
-        <SidebarNav />
+        <SidebarNav fullAccess={fullAccess} />
 
         <main id="main-content" className="main">
           <section id="overview" className="hero">
@@ -89,7 +86,11 @@ export default async function PixelAgentPage() {
                 </svg>
                 Follow on GitHub
               </a>
-              <a href="#install" className="btn-g">
+              <a
+                href="#install"
+                className={`btn-g${fullAccess ? "" : " btn-g--locked"}`}
+                aria-disabled={fullAccess ? undefined : true}
+              >
                 <svg
                   width="13"
                   height="13"
@@ -105,7 +106,7 @@ export default async function PixelAgentPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Install (preview)
+                {fullAccess ? "Install (preview)" : "Install (coming soon)"}
               </a>
             </div>
           </section>
@@ -165,11 +166,16 @@ export default async function PixelAgentPage() {
             </div>
           </section>
 
-          <section id="install">
-            <div className="sec-lbl">Setup</div>
-            <h2>
-              Two lines <em>to start</em>
-            </h2>
+          <SectionLock
+            id="install"
+            kicker="Setup"
+            title={
+              <>
+                Two lines <em>to start</em>
+              </>
+            }
+            unlocked={fullAccess}
+          >
             <p>
               No browser extension, no Web Store, no separate app. It ships
               with your project. Package is in active development — commands below
@@ -183,13 +189,18 @@ export default async function PixelAgentPage() {
               Cursor and writes the MCP config automatically. Skip it and
               annotation mode still works — you just paste manually.
             </p>
-          </section>
+          </SectionLock>
 
-          <section id="output">
-            <div className="sec-lbl">Annotation output</div>
-            <h2>
-              Choose how much <em>context to send</em>
-            </h2>
+          <SectionLock
+            id="output"
+            kicker="Annotation output"
+            title={
+              <>
+                Choose how much <em>context to send</em>
+              </>
+            }
+            unlocked={fullAccess}
+          >
             <p>
               Compact for a quick copy fix. Forensic when you&apos;re chasing a
               computed style bug.
@@ -198,14 +209,18 @@ export default async function PixelAgentPage() {
             <AnnotationSamples />
 
             <p className="utility-text-sm">Plain markdown. No API key. Paste anywhere.</p>
-          </section>
+          </SectionLock>
 
-          <section id="how">
-            <div className="sec-lbl">Under the hood</div>
-            <h2>
-              Why <em>live DOM</em>, not screenshots
-            </h2>
-
+          <SectionLock
+            id="how"
+            kicker="Under the hood"
+            title={
+              <>
+                Why <em>live DOM</em>, not screenshots
+              </>
+            }
+            unlocked={fullAccess}
+          >
             <p className="disclaimer">
               Some tools annotate screenshots and ask a vision model what to
               change. That can work — but it infers structure from pixels.
@@ -264,14 +279,18 @@ export default async function PixelAgentPage() {
               app (single-session edits, n≈20). Not a formal benchmark; numbers
               will change as the MVP ships.
             </p>
-          </section>
+          </SectionLock>
 
-          <section id="roadmap" aria-labelledby="roadmap-heading">
-            <div className="sec-lbl">What&apos;s next</div>
-            <h2 id="roadmap-heading">
-              Still <em>building</em>
-            </h2>
-
+          <SectionLock
+            id="roadmap"
+            kicker="What's next"
+            title={
+              <>
+                Still <em>building</em>
+              </>
+            }
+            unlocked={fullAccess}
+          >
             <div className="rmap">
               <div className="ritem">
                 <span className="rph rph-on">Now</span>
@@ -352,7 +371,7 @@ export default async function PixelAgentPage() {
                 </span>
               )}
             </div>
-          </section>
+          </SectionLock>
         </main>
       </div>
 

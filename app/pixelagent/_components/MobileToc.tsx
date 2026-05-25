@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pixelagentSections } from "@/lib/site";
+import LockIcon from "./LockIcon";
+import { isPixelagentSectionLocked, pixelagentSections } from "@/lib/site";
 
 const SCROLL_OFFSET = 120;
 
-export default function MobileToc() {
+export default function MobileToc({ fullAccess }: { fullAccess: boolean }) {
   const [active, setActive] = useState<string>(pixelagentSections[0].id);
 
   useEffect(() => {
@@ -31,16 +32,20 @@ export default function MobileToc() {
 
   return (
     <nav className="mobile-toc" aria-label="Page sections">
-      {pixelagentSections.map(({ id, label }) => (
-        <a
-          key={id}
-          href={`#${id}`}
-          className={`mobile-toc-link${active === id ? " active" : ""}`}
-          aria-current={active === id ? "location" : undefined}
-        >
-          {label}
-        </a>
-      ))}
+      {pixelagentSections.map(({ id, label }) => {
+        const locked = !fullAccess && isPixelagentSectionLocked(id);
+        return (
+          <a
+            key={id}
+            href={`#${id}`}
+            className={`mobile-toc-link${active === id ? " active" : ""}${locked ? " mobile-toc-link--locked" : ""}`}
+            aria-current={active === id ? "location" : undefined}
+          >
+            {label}
+            {locked && <LockIcon size={9} />}
+          </a>
+        );
+      })}
     </nav>
   );
 }
