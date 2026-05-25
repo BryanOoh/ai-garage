@@ -1,10 +1,16 @@
 /* AI Garage home grid */
 
 .garage-body {
+  --garage-pad-x: clamp(28px, 5vw, 56px);
   display:        flex;
   flex-direction: column;
   min-height:     100vh;
   padding-top:    var(--hdr-h);
+}
+
+.garage-body .hdr {
+  padding-left:  var(--garage-pad-x);
+  padding-right: var(--garage-pad-x);
 }
 
 .garage-shell {
@@ -17,7 +23,7 @@
 /* ── Intro (personal writing) ── */
 .garage-intro {
   flex-shrink:    0;
-  padding:        clamp(24px, 4vh, 40px) clamp(28px, 5vw, 56px)
+  padding:        clamp(24px, 4vh, 40px) var(--garage-pad-x)
                   clamp(20px, 3vh, 28px);
   border-bottom:  1px dashed var(--border);
 }

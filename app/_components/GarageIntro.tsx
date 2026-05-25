@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { PIXELAGENT_PAGE_ENABLED, PORTFOLIO_URL } from "@/lib/site";
+import { hasPixelagentAccess } from "@/lib/pixelagent-access";
+import { PORTFOLIO_URL } from "@/lib/site";
 import IntroStamp from "./IntroStamp";
 
-export default function GarageIntro() {
+export default async function GarageIntro() {
+  const pixelagentOpen = await hasPixelagentAccess();
   return (
     <section className="garage-intro" aria-labelledby="garage-intro-heading">
       <h1 id="garage-intro-heading" className="garage-intro-title">
@@ -18,7 +20,7 @@ export default function GarageIntro() {
           I&apos;m a designer by nature, drawn to building polished products that
           help people move faster toward something useful. This is where I share
           the tools I create —{" "}
-          {PIXELAGENT_PAGE_ENABLED ? (
+          {pixelagentOpen ? (
             <Link href="/pixelagent">PixelAgent</Link>
           ) : (
             <span className="garage-intro-pa-locked">PixelAgent</span>

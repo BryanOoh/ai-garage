@@ -4,14 +4,14 @@ import SidebarNav from "./_components/SidebarNav";
 import MobileToc from "./_components/MobileToc";
 import AnnotationSamples from "./_components/AnnotationSamples";
 import SetupCodeBlocks from "./_components/SetupCodeBlocks";
+import { hasPixelagentAccess } from "@/lib/pixelagent-access";
 import {
   GITHUB_PIXELAGENT_URL,
   PIXELAGENT_DOCS_URL,
-  PIXELAGENT_PAGE_ENABLED,
 } from "@/lib/site";
 
-export default function PixelAgentPage() {
-  if (!PIXELAGENT_PAGE_ENABLED) {
+export default async function PixelAgentPage() {
+  if (!(await hasPixelagentAccess())) {
     redirect("/");
   }
 
@@ -44,10 +44,27 @@ export default function PixelAgentPage() {
 
             <div className="hero-body">
               <p>
-                I vibe-code a lot. And somewhere between my fifth round-trip
-                prompt and another 800-token description of a button that&apos;s two
-                pixels off, I realized: I can <em>see</em> exactly what&apos;s
-                wrong. Why am I narrating it?
+                Vibe coding works great — until I hit a{" "}
+                <em>visual</em> bug. Then it turns into a long game of
+                charades with my agent. I say &ldquo;the right
+                button.&rdquo; Which one — the DOM is four divs deep
+                and there are three buttons on screen. I say
+                &ldquo;it&apos;s off.&rdquo; The agent can&apos;t see
+                my screen, so &ldquo;off&rdquo; means nothing. I say
+                &ldquo;a bit tighter,&rdquo; because I don&apos;t
+                always have the CSS word for what I mean — and the
+                agent reads &ldquo;tighter&rdquo; broadly enough to
+                refactor three unrelated things.
+              </p>
+              <p>
+                I have my workarounds — screenshot, red circle, paste.
+                Selector copied out of devtools. &ldquo;Header logo,
+                mobile 375px, shrink to fit container&rdquo; typed
+                into three labeled fields. They all work. They&apos;re
+                all tedious. And the token bill keeps climbing — a
+                2-pixel nudge somehow spirals into thousands of
+                back-and-forth. At some point I just wanted to{" "}
+                <em>see</em> the edit the moment I made it.
               </p>
               <p>
                 PixelAgent is my fix. Click the element, tweak it, hit apply. Done.
@@ -259,10 +276,18 @@ export default function PixelAgentPage() {
               <div className="ritem">
                 <span className="rph rph-on">Now</span>
                 <div>
-                  <div className="rtitle">MVP — annotation + edit panel</div>
+                  <div className="rtitle">MVP — annotation</div>
                   <p className="rdesc">
-                    Click, text-select, area-select · 4 verbosity levels ·
-                    spacing / color / border · Tailwind + inline · This / All
+                    Click, text-select, area-select · 4 verbosity levels
+                  </p>
+                </div>
+              </div>
+              <div className="ritem">
+                <span className="rph">Soon</span>
+                <div>
+                  <div className="rtitle">Edit panel</div>
+                  <p className="rdesc">
+                    Spacing / color / border · Tailwind + inline · This / All
                     instances
                   </p>
                 </div>
@@ -286,16 +311,6 @@ export default function PixelAgentPage() {
                   <p className="rdesc">
                     Framework wrappers · see how &quot;All instances&quot; affects other
                     components before applying
-                  </p>
-                </div>
-              </div>
-              <div className="ritem">
-                <span className="rph">Someday</span>
-                <div>
-                  <div className="rtitle">Designer handoff</div>
-                  <p className="rdesc">
-                    Shared annotation sessions so designers can point at the
-                    running prototype without touching code
                   </p>
                 </div>
               </div>

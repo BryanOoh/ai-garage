@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PIXELAGENT_PAGE_ENABLED } from "@/lib/site";
+import { hasPixelagentAccess } from "@/lib/pixelagent-access";
 
 const lockIcon = (
   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
@@ -22,9 +22,14 @@ export type GarageProject = {
   wip?: boolean;
 };
 
-export default function GarageProjectCell({ project }: { project: GarageProject }) {
-  const locked =
-    project.slug === "pixelagent" && !PIXELAGENT_PAGE_ENABLED;
+export default async function GarageProjectCell({
+  project,
+}: {
+  project: GarageProject;
+}) {
+  const pixelagentOpen =
+    project.slug !== "pixelagent" || (await hasPixelagentAccess());
+  const locked = project.slug === "pixelagent" && !pixelagentOpen;
 
   const body = (
     <>

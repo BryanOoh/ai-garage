@@ -8,8 +8,11 @@
   .garage-shell {
     min-height: auto;
   }
+  .garage-body {
+    --garage-pad-x: 24px;
+  }
   .garage-intro {
-    padding: 24px 24px 20px;
+    padding: 24px var(--garage-pad-x) 20px;
   }
   .garage-grid {
     grid-template-columns: 1fr;
