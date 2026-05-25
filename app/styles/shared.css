@@ -79,6 +79,11 @@
   margin-bottom:  6px;
 }
 
+.sb-brand-mark {
+  display:     block;
+  flex-shrink: 0;
+}
+
 .sb-link {
   display:         block;
   font-size:       13px;

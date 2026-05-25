@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import LockIcon from "./LockIcon";
+import PixelAgentLogo from "./PixelAgentLogo";
 import { isPixelagentSectionLocked, pixelagentSections } from "@/lib/site";
 
 const SCROLL_OFFSET = 120;
@@ -53,7 +54,7 @@ export default function SidebarNav({ fullAccess }: { fullAccess: boolean }) {
       <div className="sb-group">
         <div className="sb-lbl">All Projects</div>
         <span className="sb-proj current" aria-current="page">
-          <span className="pdot pdot-on" aria-hidden="true" />
+          <PixelAgentLogo size={14} className="sb-brand-mark" />
           PixelAgent
         </span>
         <span className="sb-proj sb-proj--muted">

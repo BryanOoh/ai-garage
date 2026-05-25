@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PixelAgentLogo from "@/app/pixelagent/_components/PixelAgentLogo";
 
 export type GarageProject = {
   slug: string;
@@ -22,6 +23,9 @@ export default function GarageProjectCell({
       </span>
 
       <div className="garage-title-row">
+        {project.slug === "pixelagent" && (
+          <PixelAgentLogo size={26} className="garage-title-mark" />
+        )}
         <h2 className="garage-title">{project.name}</h2>
         {project.wip && (
           <span className="wip-chip">

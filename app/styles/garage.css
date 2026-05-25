@@ -234,6 +234,12 @@
   margin-bottom:  clamp(20px, 4vh, 36px);
 }
 
+.garage-title-mark {
+  display:     block;
+  flex-shrink: 0;
+  color:       var(--tp);
+}
+
 .garage-title-row {
   display:     flex;
   align-items: center;
