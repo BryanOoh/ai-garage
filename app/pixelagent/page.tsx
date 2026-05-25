@@ -41,27 +41,17 @@ export default async function PixelAgentPage() {
 
             <div className="hero-body">
               <p>
-                Vibe coding works great — until I hit a{" "}
-                <em>visual</em> bug. Then it turns into a long game of
-                charades with my agent. I say &ldquo;the right
-                button.&rdquo; Which one — the DOM is four divs deep
-                and there are three buttons on screen. I say
-                &ldquo;it&apos;s off.&rdquo; The agent can&apos;t see
-                my screen, so &ldquo;off&rdquo; means nothing. I say
-                &ldquo;a bit tighter,&rdquo; because I don&apos;t
-                always have the CSS word for what I mean — and the
-                agent reads &ldquo;tighter&rdquo; broadly enough to
-                refactor three unrelated things.
+                Vibe coding works great until I hit a{" "}
+                <em>visual</em> bug. &ldquo;The right button.&rdquo;
+                Which one? &ldquo;It&apos;s off.&rdquo; The agent
+                can&apos;t see my screen. &ldquo;A bit
+                tighter.&rdquo; Then it refactors three unrelated
+                things.
               </p>
               <p>
-                I have my workarounds — screenshot, red circle, paste.
-                Selector copied out of devtools. &ldquo;Header logo,
-                mobile 375px, shrink to fit container&rdquo; typed
-                into three labeled fields. They all work. They&apos;re
-                all tedious. And the token bill keeps climbing — a
-                2-pixel nudge somehow spirals into thousands of
-                back-and-forth. At some point I just wanted to{" "}
-                <em>see</em> the edit the moment I made it.
+                Screenshots, devtools selectors, three-field prompts.
+                They work, they&apos;re tedious, and a 2-pixel nudge
+                somehow burns thousands of tokens.
               </p>
               <p>
                 PixelAgent is my fix. Click the element, tweak it, hit apply. Done.
