@@ -69,7 +69,7 @@
   --text-dim: #7d8187;
   --sb-hover: rgba(0, 0, 0, 0.04);
 
-  /* Setup code blocks — agentation-style light reference */
+  /* Setup code blocks — light syntax palette */
   --syn-plain: #000000;
   --syn-kw:    #2c44b1;
   --syn-st:    #d23669;

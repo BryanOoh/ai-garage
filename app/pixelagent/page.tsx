@@ -4,6 +4,7 @@ import MobileToc from "./_components/MobileToc";
 import AnnotationSamples from "./_components/AnnotationSamples";
 import SectionLock from "./_components/SectionLock";
 import SetupCodeBlocks from "./_components/SetupCodeBlocks";
+import TryItPixelAgent from "./_components/TryItPixelAgent";
 import { hasPixelagentFullAccess } from "@/lib/pixelagent-access";
 import {
   GITHUB_PIXELAGENT_URL,
@@ -41,17 +42,19 @@ export default async function PixelAgentPage() {
 
             <div className="hero-body">
               <p>
-                Vibe coding works great until I hit a{" "}
-                <em>visual</em> bug. &ldquo;The right button.&rdquo;
-                Which one? &ldquo;It&apos;s off.&rdquo; The agent
-                can&apos;t see my screen. &ldquo;A bit
-                tighter.&rdquo; Then it refactors three unrelated
-                things.
+                Most of my vibe coding edits are small. Move a button
+                4px. Tighten one padding. Change one color. But to
+                make that one small edit, I have to describe the
+                whole component it lives in, and then we go back and
+                forth three rounds deep before the agent touches the
+                right line. I spend more breath narrating the change
+                than it would take to point at it.
               </p>
               <p>
-                Screenshots, devtools selectors, three-field prompts.
-                They work, they&apos;re tedious, and a 2-pixel nudge
-                somehow burns thousands of tokens.
+                Worse, half the time the diff bleeds outside my
+                actual ask. Adjacent margins shift. A sibling
+                component reflows. One tiny <em>visual</em> tweak
+                turns into a layout regression I have to chase down.
               </p>
               <p>
                 PixelAgent is my fix. Click the element, tweak it, hit apply. Done.
@@ -59,23 +62,7 @@ export default async function PixelAgentPage() {
             </div>
 
             <div className="actions">
-              <a
-                href={GITHUB_PIXELAGENT_URL}
-                className="btn-p"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 14 14"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M7 1C3.69 1 1 3.69 1 7c0 2.65 1.72 4.9 4.1 5.69.3.06.41-.13.41-.29v-1.01c-1.67.36-2.02-.81-2.02-.81-.27-.69-.66-.87-.66-.87-.54-.37.04-.36.04-.36.6.04.91.61.91.61.53.91 1.39.65 1.73.49.05-.38.21-.65.38-.8-1.33-.15-2.73-.67-2.73-2.97 0-.66.23-1.19.62-1.61-.06-.15-.27-.76.06-1.58 0 0 .5-.16 1.65.61.48-.13.99-.2 1.5-.2.51 0 1.02.07 1.5.2 1.15-.77 1.65-.61 1.65-.61.33.82.12 1.43.06 1.58.38.42.62.95.62 1.61 0 2.31-1.4 2.82-2.74 2.97.22.18.41.55.41 1.12v1.66c0 .16.11.35.41.29C11.28 11.9 13 9.65 13 7c0-3.31-2.69-6-6-6z" />
-                </svg>
-                Follow on GitHub
-              </a>
+              <TryItPixelAgent />
               <a
                 href="#install"
                 className={`btn-g${fullAccess ? "" : " btn-g--locked"}`}

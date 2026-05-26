@@ -132,7 +132,7 @@
   color:       var(--syn-plain);
 }
 
-/* Setup section — IDE / agentation reference palette */
+/* Setup section — IDE syntax palette */
 .cb-body .kw   { color: var(--syn-kw); }
 .cb-body .st   { color: var(--syn-st); }
 .cb-body .comp { color: var(--syn-comp); }
@@ -368,4 +368,102 @@
 .btn-g--locked {
   opacity: 0.72;
   cursor:  default;
+}
+
+/* ──────────────────────────────────────────────────────────────
+ * Liquid glass primary button — matches PixelAgent toolbar feel.
+ * Backdrop blur + saturate, inset rim highlight, specular sheen,
+ * subtle lift on hover. Falls back to solid fill when transparency
+ * is disabled. Inherits --btn-p-bg / --btn-p-fg from tokens.css so
+ * it adapts to light and dark themes automatically.
+ * ────────────────────────────────────────────────────────────── */
+.btn-glass {
+  position:        relative;
+  display:         inline-flex;
+  align-items:     center;
+  gap:             8px;
+  height:          36px;
+  padding:         0 18px;
+  border-radius:   9999px;
+  font-family:     var(--sans);
+  font-size:       13px;
+  font-weight:     600;
+  letter-spacing: -0.01em;
+  color:           var(--btn-p-fg);
+  background:      color-mix(in srgb, var(--btn-p-bg) 70%, transparent);
+  border:          1px solid color-mix(in srgb, var(--btn-p-fg) 14%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  cursor:          pointer;
+  isolation:       isolate;
+  overflow:        hidden;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, #fff 60%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #fff 10%, transparent),
+    0 1px 2px 0 rgba(0, 0, 0, .04),
+    0 8px 24px -8px color-mix(in srgb, var(--btn-p-fg) 28%, transparent);
+}
+
+/* Specular gradient sheen — sits over the frosted backdrop. */
+.btn-glass::before {
+  content:        '';
+  position:       absolute;
+  inset:          0;
+  border-radius:  inherit;
+  pointer-events: none;
+  z-index:        1;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #fff 32%, transparent) 0%, transparent 50%),
+    linear-gradient(  0deg, color-mix(in srgb, #fff  8%, transparent) 0%, transparent 30%);
+  mix-blend-mode: screen;
+}
+
+/* Keep content above the sheen layer. */
+.btn-glass > * {
+  position: relative;
+  z-index:  2;
+}
+
+.btn-glass:hover {
+  background: color-mix(in srgb, var(--btn-p-bg) 86%, transparent);
+  transform:  translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, #fff 70%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #fff 12%, transparent),
+    0 2px 4px 0 rgba(0, 0, 0, .06),
+    0 12px 28px -8px color-mix(in srgb, var(--btn-p-fg) 34%, transparent);
+}
+
+.btn-glass:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, #fff 50%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #fff  8%, transparent),
+    0 1px 2px 0 rgba(0, 0, 0, .05),
+    0 4px 12px -4px color-mix(in srgb, var(--btn-p-fg) 22%, transparent);
+}
+
+.btn-glass:focus-visible {
+  outline:        2px solid var(--btn-p-fg);
+  outline-offset: 2px;
+}
+
+.btn-glass svg { display: block; }
+
+@media (prefers-reduced-transparency: reduce) {
+  .btn-glass {
+    background:             var(--btn-p-bg);
+    backdrop-filter:        none;
+    -webkit-backdrop-filter: none;
+  }
+  .btn-glass::before { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-glass            { transition: none; }
+  .btn-glass:hover      { transform: none; }
 }
