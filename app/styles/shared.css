@@ -146,7 +146,7 @@
   padding:    72px 60px 140px;
 }
 
-section { margin-bottom: 72px; scroll-margin-top: 72px; }
+.main > section { margin-bottom: 72px; scroll-margin-top: 72px; }
 
 .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
