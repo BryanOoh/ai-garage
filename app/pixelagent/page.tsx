@@ -42,24 +42,36 @@ export default async function PixelAgentPage() {
 
             <div className="hero-body">
               <p>
-                Most of my vibe coding edits are small. Move a button
-                4px. Tighten one padding. Change one color. But to
-                make that one small edit, I have to describe the
-                whole component it lives in, and then we go back and
-                forth three rounds deep before the agent touches the
-                right line. I spend more breath narrating the change
-                than it would take to point at it.
+                I&apos;ll notice when padding is off by 2px, or when
+                a button sits just a little too far to the right.
+                But actually fixing it still means describing the
+                entire component to the model, then cleaning up all
+                the parts of the diff that shifted when they
+                weren&apos;t supposed to.
               </p>
               <p>
-                Worse, half the time the diff bleeds outside my
-                actual ask. Adjacent margins shift. A sibling
-                component reflows. One tiny <em>visual</em> tweak
-                turns into a layout regression I have to chase down.
+                After a while I started wondering what it would feel
+                like to just <em>point</em> at the thing. No setup,
+                no back-and-forth, nothing breaking around it.
               </p>
               <p>
                 PixelAgent is my fix. Click the element, tweak it, hit apply. Done.
               </p>
             </div>
+
+            <figure className="hero-demo">
+              <video
+                className="hero-demo-video"
+                src="/pixelagent-demo.mp4"
+                poster="/pixelagent-demo-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="PixelAgent demo: clicking an element, tweaking it in a side panel, and applying the change."
+              />
+            </figure>
 
             <div className="actions">
               <TryItPixelAgent />
