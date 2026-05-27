@@ -147,9 +147,9 @@ export default async function PixelAgentPage() {
                 <div className="col-card-label">Mode B</div>
                 <div className="col-card-title">Edit panel</div>
                 <p>
-                  Figma-like panel for spacing, color, type. Tweaks stay local
-                  until you hit Apply — then one structured diff, one agent
-                  call.
+                  Figma-like panel for spacing, color, type, border, opacity.
+                  Preview hover/focus/active states. Tweaks stay local until
+                  you hit Apply — then one structured diff, one agent call.
                 </p>
               </div>
             </div>
@@ -282,21 +282,13 @@ export default async function PixelAgentPage() {
           >
             <div className="rmap">
               <div className="ritem">
-                <span className="rph rph-on">Now</span>
+                <span className="rph rph-on">Live</span>
                 <div>
-                  <div className="rtitle">MVP — annotation</div>
+                  <div className="rtitle">Annotate + Edit panel</div>
                   <p className="rdesc">
-                    Click, text-select, area-select · 4 verbosity levels
-                  </p>
-                </div>
-              </div>
-              <div className="ritem">
-                <span className="rph">Soon</span>
-                <div>
-                  <div className="rtitle">Edit panel</div>
-                  <p className="rdesc">
-                    Spacing / color / border · Tailwind + inline · This / All
-                    instances
+                    Click any element · structured markdown to clipboard ·
+                    Figma-like property panel · hover/focus/active state editing ·
+                    one-click Apply via MCP
                   </p>
                 </div>
               </div>

@@ -34,7 +34,7 @@ export default function TryItPixelAgent() {
       </button>
       {on && (
         <p className="try-it-hint" role="status">
-          Tip: drag the logo to reposition
+          Tip: switch to Edit mode, click any element, tweak styles, hit Apply
         </p>
       )}
       {/* runtimeStateStyles: there's no Vite dev server in production, so
