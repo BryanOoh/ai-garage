@@ -37,7 +37,10 @@ export default function TryItPixelAgent() {
           Tip: drag the logo to reposition
         </p>
       )}
-      {on && <PixelAgent />}
+      {/* runtimeStateStyles: there's no Vite dev server in production, so
+          Apply lives in the DOM (inline + injected <style>) instead of
+          patching source. Edits reset on reload — that's the trade-off. */}
+      {on && <PixelAgent runtimeStateStyles />}
     </div>
   );
 }
