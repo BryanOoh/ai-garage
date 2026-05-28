@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import {
   PIXELAGENT_PREVIEW_COOKIE,
-  getPixelagentPreviewSecret,
   isValidPixelagentPreviewKey,
 } from "@/lib/pixelagent-access";
 

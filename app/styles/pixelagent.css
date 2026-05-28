@@ -123,16 +123,33 @@
 .cb-copy {
   font-family:  var(--mono);
   font-size:    11px;
-  color:        var(--ts);
+  color:        var(--tt);
   background:   none;
   border:       none;
   cursor:       pointer;
-  padding:      2px 6px;
+  padding:      4px 8px;
   border-radius: 4px;
-  transition:   color .15s;
+  transition:   color .15s, background .15s;
+  display:      inline-flex;
+  align-items:  center;
+  gap:          6px;
 }
-.cb-copy:hover { color: var(--tp); }
-.cb-copy:disabled { opacity: 0.5; cursor: not-allowed; }
+.cb-copy:hover { background: var(--sb-hover); }
+.cb-copy:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.cb-copy[data-state="copied"],
+.cb-copy[data-state="error"] {
+  color: var(--tt); /* unify icon + feedback text tone */
+}
+.cb-copy-meta {
+  color:       var(--tt); /* match .cb-lbl (terminal/layout.tsx label tone) */
+  font-family: var(--mono);
+  font-size:   11px;
+}
+.cb-copy:disabled { opacity: 1; cursor: default; }
+.cb-copy-ic { display: block; flex-shrink: 0; }
 .cb-body {
   padding:     16px 20px;
   font-family: var(--mono);

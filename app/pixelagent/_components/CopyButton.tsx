@@ -40,10 +40,22 @@ export default function CopyButton({ text, label = "copy" }: CopyButtonProps) {
   };
 
   const buttonLabel =
-    state === "copied" ? "Copied to clipboard" : state === "error" ? "Copy failed" : `Copy ${label}`;
+    state === "copied"
+      ? "Copied to clipboard"
+      : state === "error"
+        ? "Copy failed"
+        : label === "copy"
+          ? "Copy to clipboard"
+          : `Copy ${label}`;
 
   const display =
-    state === "copied" ? "copied!" : state === "error" ? "failed" : label;
+    state === "copied"
+      ? "Copied"
+      : state === "error"
+        ? "Failed"
+        : label === "copy"
+          ? "Copy"
+          : `Copy`;
 
   return (
     <button
@@ -51,10 +63,30 @@ export default function CopyButton({ text, label = "copy" }: CopyButtonProps) {
       className="cb-copy"
       onClick={handleCopy}
       disabled={state === "copied"}
+      data-state={state}
       aria-label={buttonLabel}
       title={buttonLabel}
     >
-      {display}
+      {state === "idle" && (
+        <svg
+          className="cb-copy-ic"
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2m0 16H8V7h11z"
+          />
+        </svg>
+      )}
+      {state !== "idle" && (
+        <span className="cb-copy-meta" aria-hidden="true">
+          {display}
+        </span>
+      )}
     </button>
   );
 }

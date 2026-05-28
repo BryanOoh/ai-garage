@@ -208,15 +208,15 @@ export default async function PixelAgentPage() {
             kicker="Setup"
             title={
               <>
-                Two lines <em>to start</em>
+                One line <em>to start</em>
               </>
             }
             unlocked={fullAccess}
           >
             <p>
               No browser extension, no Web Store, no separate app. It ships
-              with your project. Package is in active development — commands below
-              reflect the planned API.
+              with your project. It&apos;s in beta and still moving fast — but
+              the commands below work today.
             </p>
 
             <SetupCodeBlocks />

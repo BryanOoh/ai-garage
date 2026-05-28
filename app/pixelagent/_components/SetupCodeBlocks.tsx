@@ -1,29 +1,25 @@
 import CopyButton from "./CopyButton";
 
-const INSTALL_CMD = `npm install pixelagent --save-dev\nnpx pixelagent setup`;
-const LAYOUT_CMD = `import { PixelAgent } from "pixelagent"\n\n// add anywhere in your layout — auto-excluded from prod\n{process.env.NODE_ENV === "development" && <PixelAgent />}`;
+const INSTALL_CMD = `npm install pixelagent`;
+const LAYOUT_CMD = `import { PixelAgent } from "pixelagent"\n\n// add anywhere in your layout — auto-excluded from prod\n{process.env.NODE_ENV !== "production" && <PixelAgent />}`;
 
 export default function SetupCodeBlocks() {
   return (
     <>
+      <p className="utility-text-sm">Install the package</p>
       <div className="cb">
         <div className="cb-hdr">
           <span className="cb-lbl">terminal</span>
-          <CopyButton text={INSTALL_CMD} label="install commands" />
+          <CopyButton text={INSTALL_CMD} label="install" />
         </div>
         <div className="cb-body">
           <span className="kw">npm</span>{" "}
           <span className="cmd">install</span>{" "}
-          <span className="cmd">pixelagent</span>{" "}
-          <span className="flag">--save-dev</span>
-          <br />
-          <span className="kw">npx</span>{" "}
-          <span className="cmd">pixelagent</span>{" "}
-          <span className="cmd">setup</span>{" "}
-          <span className="cm"># optional — wires up MCP auto-apply</span>
+          <span className="cmd">pixelagent</span>
         </div>
       </div>
 
+      <p className="utility-text-sm utility-mt-lg">Add to your app</p>
       <div className="cb">
         <div className="cb-hdr">
           <span className="cb-lbl">layout.tsx</span>
@@ -45,8 +41,8 @@ export default function SetupCodeBlocks() {
           <span className="op">{"{"}</span>
           <span className="plain">process.env.</span>
           <span className="prop">NODE_ENV</span>{" "}
-          <span className="op">===</span>{" "}
-          <span className="st">&quot;development&quot;</span>{" "}
+          <span className="op">!==</span>{" "}
+          <span className="st">&quot;production&quot;</span>{" "}
           <span className="kw">&amp;&amp;</span>{" "}
           <span className="op">&lt;</span>
           <span className="comp">PixelAgent</span>{" "}
@@ -54,6 +50,11 @@ export default function SetupCodeBlocks() {
           <span className="op">{"}"}</span>
         </div>
       </div>
+
+      <p className="utility-text-sm utility-mt-xs">
+        Styles inject automatically — no{" "}
+        <code>import &quot;pixelagent/style.css&quot;</code> needed.
+      </p>
     </>
   );
 }
