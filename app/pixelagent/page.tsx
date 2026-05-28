@@ -138,7 +138,7 @@ export default async function PixelAgentPage() {
                 Why <em>live DOM</em>, not screenshots
               </>
             }
-            unlocked={fullAccess}
+            unlocked
           >
             <p className="disclaimer">
               Some tools annotate screenshots and ask a vision model what to
@@ -191,7 +191,7 @@ export default async function PixelAgentPage() {
                 What it actually <em>sends</em>
               </>
             }
-            unlocked={fullAccess}
+            unlocked
           >
             <p>
               It captures the context for you — selector, visible text, source
@@ -211,7 +211,7 @@ export default async function PixelAgentPage() {
                 One line <em>to start</em>
               </>
             }
-            unlocked={fullAccess}
+            unlocked
           >
             <p>
               No browser extension, no Web Store, no separate app. It ships

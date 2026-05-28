@@ -3,7 +3,7 @@
 const env = (key: string, fallback: string) =>
   process.env[key]?.trim() || fallback;
 
-export const SITE_URL = env("NEXT_PUBLIC_SITE_URL", "https://ai-garage.dev");
+export const SITE_URL = env("NEXT_PUBLIC_SITE_URL", "https://bryangarage.dev");
 
 export const PORTFOLIO_URL = "https://bryanohdesign.com/";
 
@@ -37,9 +37,9 @@ export const pixelagentSections = [
   { id: "overview", label: "Why I made it" },
   { id: "try", label: "Try it" },
   { id: "what", label: "What I built" },
-  { id: "how", label: "Under the hood", locked: true },
-  { id: "output", label: "What it sends", locked: true },
-  { id: "install", label: "Run it yourself", locked: true },
+  { id: "how", label: "Under the hood" },
+  { id: "output", label: "What it sends" },
+  { id: "install", label: "Run it yourself" },
   { id: "closing", label: "Closing thoughts" },
 ] as const satisfies readonly PixelagentSection[];
 
