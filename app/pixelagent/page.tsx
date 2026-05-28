@@ -5,19 +5,16 @@ import AnnotationSamples from "./_components/AnnotationSamples";
 import SectionLock from "./_components/SectionLock";
 import SetupCodeBlocks from "./_components/SetupCodeBlocks";
 import TryItPixelAgent from "./_components/TryItPixelAgent";
-import { hasPixelagentFullAccess } from "@/lib/pixelagent-access";
 
-export default async function PixelAgentPage() {
-  const fullAccess = await hasPixelagentFullAccess();
-
+export default function PixelAgentPage() {
   return (
     <>
       <SiteHeader homeHref="/" homeLabel="AI Garage" />
 
-      <MobileToc fullAccess={fullAccess} />
+      <MobileToc />
 
       <div className="layout">
-        <SidebarNav fullAccess={fullAccess} />
+        <SidebarNav />
 
         <main id="main-content" className="main">
           <section id="overview" className="hero">
@@ -138,7 +135,6 @@ export default async function PixelAgentPage() {
                 Why <em>live DOM</em>, not screenshots
               </>
             }
-            unlocked
           >
             <p className="disclaimer">
               Some tools annotate screenshots and ask a vision model what to
@@ -191,7 +187,6 @@ export default async function PixelAgentPage() {
                 What it actually <em>sends</em>
               </>
             }
-            unlocked
           >
             <p>
               It captures the context for you — selector, visible text, source
@@ -211,7 +206,6 @@ export default async function PixelAgentPage() {
                 One line <em>to start</em>
               </>
             }
-            unlocked
           >
             <p>
               No browser extension, no Web Store, no separate app. It ships

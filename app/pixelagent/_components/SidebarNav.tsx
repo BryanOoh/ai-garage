@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LockIcon from "./LockIcon";
 import PixelAgentLogo from "./PixelAgentLogo";
-import { isPixelagentSectionLocked, pixelagentSections } from "@/lib/site";
+import { pixelagentSections } from "@/lib/site";
 
 const SCROLL_OFFSET = 120;
 
-export default function SidebarNav({ fullAccess }: { fullAccess: boolean }) {
+export default function SidebarNav() {
   const [active, setActive] = useState<string>(pixelagentSections[0].id);
 
   useEffect(() => {
@@ -35,20 +34,16 @@ export default function SidebarNav({ fullAccess }: { fullAccess: boolean }) {
     <aside className="sidebar" aria-label="Documentation">
       <div className="sb-group">
         <div className="sb-lbl">PixelAgent</div>
-        {pixelagentSections.map(({ id, label }) => {
-          const locked = !fullAccess && isPixelagentSectionLocked(id);
-          return (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={`sb-link${active === id ? " active" : ""}${locked ? " sb-link--locked" : ""}`}
-              aria-current={active === id ? "location" : undefined}
-            >
-              {label}
-              {locked && <LockIcon size={9} />}
-            </a>
-          );
-        })}
+        {pixelagentSections.map(({ id, label }) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            className={`sb-link${active === id ? " active" : ""}`}
+            aria-current={active === id ? "location" : undefined}
+          >
+            {label}
+          </a>
+        ))}
       </div>
 
       <div className="sb-group">

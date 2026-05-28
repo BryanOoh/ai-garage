@@ -22,15 +22,9 @@ export const GITHUB_PIXELAGENT_URL = env(
 /** Set when docs are live; empty string hides the docs link */
 export const PIXELAGENT_DOCS_URL = env("NEXT_PUBLIC_PIXELAGENT_DOCS_URL", "");
 
-/** Set to "true" to unlock Install+ sections on /pixelagent */
-export const PIXELAGENT_PAGE_ENABLED =
-  env("NEXT_PUBLIC_PIXELAGENT_PAGE_ENABLED", "false") === "true";
-
 export type PixelagentSection = {
   id: string;
   label: string;
-  /** Locked until NEXT_PUBLIC_PIXELAGENT_PAGE_ENABLED or preview cookie */
-  locked?: boolean;
 };
 
 export const pixelagentSections = [
@@ -42,9 +36,3 @@ export const pixelagentSections = [
   { id: "install", label: "Run it yourself" },
   { id: "closing", label: "Closing thoughts" },
 ] as const satisfies readonly PixelagentSection[];
-
-export function isPixelagentSectionLocked(id: string): boolean {
-  return pixelagentSections.some(
-    (s) => s.id === id && Boolean((s as PixelagentSection).locked),
-  );
-}

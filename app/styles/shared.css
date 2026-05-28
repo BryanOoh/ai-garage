@@ -102,12 +102,6 @@
   color:      var(--tp);
   background: var(--bg3);
 }
-.sb-link--locked {
-  display:     inline-flex;
-  align-items: center;
-  gap:         6px;
-  opacity:     0.72;
-}
 
 .sb-proj {
   display:         flex;
@@ -242,12 +236,6 @@ footer {
   color: var(--tp);
   background: var(--bg3);
   border-color: var(--border-h);
-}
-.mobile-toc-link--locked {
-  display:     inline-flex;
-  align-items: center;
-  gap:         5px;
-  opacity:     0.72;
 }
 
 .utility-mt-lg { margin-top: 28px; }
