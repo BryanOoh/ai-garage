@@ -34,12 +34,13 @@ export type PixelagentSection = {
 };
 
 export const pixelagentSections = [
-  { id: "overview", label: "The problem" },
-  { id: "what", label: "What it does" },
-  { id: "install", label: "Install", locked: true },
-  { id: "output", label: "Output format", locked: true },
-  { id: "how", label: "How it works", locked: true },
-  { id: "roadmap", label: "What's next", locked: true },
+  { id: "overview", label: "Why I made it" },
+  { id: "try", label: "Try it" },
+  { id: "what", label: "What I built" },
+  { id: "how", label: "Under the hood", locked: true },
+  { id: "output", label: "What it sends", locked: true },
+  { id: "install", label: "Run it yourself", locked: true },
+  { id: "closing", label: "Closing thoughts" },
 ] as const satisfies readonly PixelagentSection[];
 
 export function isPixelagentSectionLocked(id: string): boolean {

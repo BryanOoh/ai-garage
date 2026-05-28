@@ -6,14 +6,9 @@ import SectionLock from "./_components/SectionLock";
 import SetupCodeBlocks from "./_components/SetupCodeBlocks";
 import TryItPixelAgent from "./_components/TryItPixelAgent";
 import { hasPixelagentFullAccess } from "@/lib/pixelagent-access";
-import {
-  GITHUB_PIXELAGENT_URL,
-  PIXELAGENT_DOCS_URL,
-} from "@/lib/site";
 
 export default async function PixelAgentPage() {
   const fullAccess = await hasPixelagentFullAccess();
-  const docsReady = PIXELAGENT_DOCS_URL.length > 0;
 
   return (
     <>
@@ -72,31 +67,11 @@ export default async function PixelAgentPage() {
                 aria-label="PixelAgent demo: clicking an element, tweaking it in a side panel, and applying the change."
               />
             </figure>
+          </section>
 
-            <div className="actions">
+          <section id="try" className="try-demo-wrap">
+            <div className="try-demo">
               <TryItPixelAgent />
-              <a
-                href="#install"
-                className={`btn-g${fullAccess ? "" : " btn-g--locked"}`}
-                aria-disabled={fullAccess ? undefined : true}
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 13 13"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M6.5 1v7M3 5.5l3.5 3.5 3.5-3.5M2 11h9"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {fullAccess ? "Install (preview)" : "Install (coming soon)"}
-              </a>
             </div>
           </section>
 
@@ -156,51 +131,6 @@ export default async function PixelAgentPage() {
           </section>
 
           <SectionLock
-            id="install"
-            kicker="Setup"
-            title={
-              <>
-                Two lines <em>to start</em>
-              </>
-            }
-            unlocked={fullAccess}
-          >
-            <p>
-              No browser extension, no Web Store, no separate app. It ships
-              with your project. Package is in active development — commands below
-              reflect the planned API.
-            </p>
-
-            <SetupCodeBlocks />
-
-            <p className="utility-text-sm utility-mt-xs">
-              The <code>npx pixelagent setup</code> step detects Claude Code or
-              Cursor and writes the MCP config automatically. Skip it and
-              annotation mode still works — you just paste manually.
-            </p>
-          </SectionLock>
-
-          <SectionLock
-            id="output"
-            kicker="Annotation output"
-            title={
-              <>
-                Choose how much <em>context to send</em>
-              </>
-            }
-            unlocked={fullAccess}
-          >
-            <p>
-              Compact for a quick copy fix. Forensic when you&apos;re chasing a
-              computed style bug.
-            </p>
-
-            <AnnotationSamples />
-
-            <p className="utility-text-sm">Plain markdown. No API key. Paste anywhere.</p>
-          </SectionLock>
-
-          <SectionLock
             id="how"
             kicker="Under the hood"
             title={
@@ -238,135 +168,92 @@ export default async function PixelAgentPage() {
                 </span>
               </div>
               <div className="spec-item">
-                <span className="spec-key">source accuracy</span>
+                <span className="spec-key">source mapping</span>
                 <span className="spec-val">
-                  <strong>≥95%</strong> with Babel plugin, ~80% fallback
+                  <strong>exact file:line</strong> with the dev plugin — a good
+                  guess without it
                 </span>
               </div>
               <div className="spec-item">
-                <span className="spec-key">panel latency</span>
+                <span className="spec-key">local</span>
                 <span className="spec-val">
-                  <strong>≤50ms</strong> live DOM override
-                </span>
-              </div>
-              <div className="spec-item">
-                <span className="spec-key">animation states</span>
-                <span className="spec-val">
-                  pause CSS animations, annotate frozen frame
-                </span>
-              </div>
-              <div className="spec-item">
-                <span className="spec-key">privacy</span>
-                <span className="spec-val">
-                  MCP runs locally — no source code leaves your machine
+                  runs on your machine — nothing leaves it
                 </span>
               </div>
             </div>
-
-            <p className="footnote" id="metrics-note">
-              <sup>*</sup> Targets from internal dogfooding on a Next.js + Tailwind
-              app (single-session edits, n≈20). Not a formal benchmark; numbers
-              will change as the MVP ships.
-            </p>
           </SectionLock>
 
           <SectionLock
-            id="roadmap"
-            kicker="What's next"
+            id="output"
+            kicker="Annotation output"
             title={
               <>
-                Still <em>building</em>
+                What it actually <em>sends</em>
               </>
             }
             unlocked={fullAccess}
           >
-            <div className="rmap">
-              <div className="ritem">
-                <span className="rph rph-on">Live</span>
-                <div>
-                  <div className="rtitle">Annotate + Edit panel</div>
-                  <p className="rdesc">
-                    Click any element · structured markdown to clipboard ·
-                    Figma-like property panel · hover/focus/active state editing ·
-                    one-click Apply via MCP
-                  </p>
-                </div>
-              </div>
-              <div className="ritem">
-                <span className="rph">Soon</span>
-                <div>
-                  <div className="rtitle">Typography + responsive viewport</div>
-                  <p className="rdesc">
-                    Font editing · 375px mobile toggle · CSS Modules · Undo
-                    after Apply
-                  </p>
-                </div>
-              </div>
-              <div className="ritem">
-                <span className="rph">Later</span>
-                <div>
-                  <div className="rtitle">
-                    Vue / Svelte + propagation preview
-                  </div>
-                  <p className="rdesc">
-                    Framework wrappers · see how &quot;All instances&quot; affects other
-                    components before applying
-                  </p>
-                </div>
-              </div>
-            </div>
+            <p>
+              It captures the context for you — selector, visible text, source
+              line — as one block of plain markdown.
+            </p>
 
-            <div className="docs-callout">
-              <div className="docs-callout-text">
-                Want the full technical details?
-                <br />
-                <strong>Full docs are in progress</strong> — check back soon.
-              </div>
-              {docsReady ? (
-                <a
-                  href={PIXELAGENT_DOCS_URL}
-                  className="docs-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  pixelagent docs
-                  <svg
-                    width="11"
-                    height="11"
-                    viewBox="0 0 11 11"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M2 9L9 2M9 2H4M9 2v5"
-                      stroke="currentColor"
-                      strokeWidth="1.3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
-              ) : (
-                <span className="docs-link docs-link--pending" aria-disabled="true">
-                  docs coming soon
-                </span>
-              )}
-            </div>
+            <AnnotationSamples />
+
+            <p className="utility-text-sm">Plain markdown. No API key. Paste anywhere.</p>
           </SectionLock>
+
+          <SectionLock
+            id="install"
+            kicker="Setup"
+            title={
+              <>
+                Two lines <em>to start</em>
+              </>
+            }
+            unlocked={fullAccess}
+          >
+            <p>
+              No browser extension, no Web Store, no separate app. It ships
+              with your project. Package is in active development — commands below
+              reflect the planned API.
+            </p>
+
+            <SetupCodeBlocks />
+
+            <p className="utility-text-sm utility-mt-xs">
+              The <code>npx pixelagent setup</code> step detects Claude Code or
+              Cursor and writes the MCP config automatically. Skip it and
+              annotation mode still works — you just paste manually.
+            </p>
+          </SectionLock>
+
+          <section id="closing">
+            <div className="sec-lbl">Closing thoughts</div>
+            <h2>
+              With an agent, pointing <em>says more</em> than words.
+            </h2>
+
+            <p>
+              &ldquo;The button on the right.&rdquo; &ldquo;A little more
+              padding.&rdquo; Words like these make the agent guess — and guess
+              wrong. But hand it the actual element, selector and source line
+              attached, and the conversation changes. Less back-and-forth. Less
+              talking past each other.
+            </p>
+            <p>
+              Once I could point instead of narrate, things just worked.
+            </p>
+            <p>
+              If you&apos;d rather tweak your own UI than prompt your way through
+              it — this might be the thing that makes that feel possible.
+            </p>
+          </section>
         </main>
       </div>
 
       <footer>
         <span className="fl">PixelAgent · May 2026</span>
-        <nav className="flinks" aria-label="Footer">
-          <a
-            href={GITHUB_PIXELAGENT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
-        </nav>
       </footer>
     </>
   );

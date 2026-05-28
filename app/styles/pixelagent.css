@@ -1,11 +1,5 @@
 /* PixelAgent product page */
 
-.hero {
-  margin-bottom:  88px;
-  padding-bottom: 72px;
-  border-bottom:  1px solid var(--border);
-}
-
 .hero-kicker {
   font-family:    var(--mono);
   font-size:      12px;
@@ -159,40 +153,36 @@
 .cb-body .cmd  { color: var(--syn-cmd); }
 .cb-body .flag { color: var(--syn-flag); }
 
-.vlist {
+.out {
   display:        flex;
   flex-direction: column;
-  gap:            1px;
-  background:     var(--border);
-  border:         1px solid var(--border);
-  border-radius:  8px;
-  overflow:       hidden;
+  gap:            12px;
   margin:         20px 0;
 }
-.vitem {
-  background:            var(--bg);
-  padding:               14px 18px;
-  display:               grid;
-  grid-template-columns: 80px 1fr;
-  gap:                   14px;
-  align-items:           start;
+.out-card {
+  margin:        0;
+  background:    var(--bg2);
+  border:        1px solid var(--border);
+  border-radius: 8px;
+  overflow:      hidden;
 }
-.vtag {
-  font-family:    var(--mono);
-  font-size:      10px;
-  font-weight:    500;
-  color:          var(--tt);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  padding-top:    2px;
+.out-card-hdr {
+  padding:       9px 16px;
+  border-bottom: 1px solid var(--border);
+  font-family:   var(--mono);
+  font-size:     11px;
+  color:         var(--tt);
 }
-.vtag-on { color: var(--tp); }
-.vcode {
+.out-body {
+  margin:      0;
+  padding:     16px 20px;
   font-family: var(--mono);
-  font-size:   12px;
+  font-size:   12.5px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break:  break-word;
+  overflow-x:  auto;
   color:       var(--ts);
-  line-height: 1.6;
-  word-break:  break-all;
 }
 
 .spec-row {
@@ -234,37 +224,6 @@
   border-radius:  4px;
   vertical-align: middle;
 }
-
-.rmap {
-  display:        flex;
-  flex-direction: column;
-  gap:            1px;
-  background:     var(--border);
-  border:         1px solid var(--border);
-  border-radius:  8px;
-  overflow:       hidden;
-  margin:         20px 0;
-}
-.ritem {
-  background:            var(--bg);
-  padding:               16px 20px;
-  display:               grid;
-  grid-template-columns: 92px 1fr;
-  gap:                   16px;
-  align-items:           start;
-}
-.rph {
-  font-family:    var(--mono);
-  font-size:      10px;
-  font-weight:    500;
-  color:          var(--tt);
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  padding-top:    3px;
-}
-.rph-on { color: var(--tp); }
-.rtitle { font-size: 14px; font-weight: 400; color: var(--tp); margin-bottom: 4px; }
-.rdesc  { font-size: 14px; color: var(--ts); font-weight: 400; margin: 0; line-height: 1.5; }
 
 .docs-callout {
   border:         1px solid var(--border);
@@ -381,10 +340,6 @@
   margin:      0;
   max-width:   420px;
 }
-.btn-g--locked {
-  opacity: 0.72;
-  cursor:  default;
-}
 
 /* ──────────────────────────────────────────────────────────────
  * Liquid glass primary button — matches PixelAgent toolbar feel.
@@ -485,25 +440,58 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
- * Preview (Try-it) button + drag hint
- * The hint floats below the button so it does not push the
- * Install button to a new line in the actions row.
+ * Try-it — always-on inline demo callout
  * ───────────────────────────────────────────────────────────── */
-.try-it-wrap {
-  position: relative;
-  display:  inline-flex;
+.try-demo-wrap {
+  padding-bottom: 72px;
+  border-bottom:  1px solid var(--border);
+}
+.try-demo {
+  padding:       28px 30px;
+  background:    var(--bg2);
+  border:        1px solid var(--border);
+  border-radius: 12px;
+}
+.try-demo-label {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            7px;
+  font-family:    var(--mono);
+  font-size:      11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color:          var(--tt);
+  margin-bottom:  12px;
+}
+.try-demo-copy {
+  font-size:   16px;
+  line-height: 1.55;
+  color:       var(--ts);
+  max-width:   560px;
+  margin:      0 0 20px;
+}
+.try-demo-copy strong { color: var(--tp); font-weight: 400; }
+.try-demo-actions {
+  display:     flex;
+  align-items: center;
+  gap:         16px;
+  flex-wrap:   wrap;
+}
+.try-demo-actions .btn-glass {
+  min-width:       144px;
+  justify-content: center;
+}
+.try-demo-note {
+  font-family: var(--mono);
+  font-size:   11px;
+  color:       var(--tt);
 }
 
-.try-it-hint {
-  position:       absolute;
-  top:            calc(100% + 8px);
-  left:           0;
-  margin:         0;
-  z-index:        2;
-  font-family:    var(--sans);
-  font-size:      13px;
-  line-height:    1.3;
-  color:          var(--text-dim);
-  white-space:    nowrap;
-  pointer-events: none;
+/* The PixelAgent toolbar centers itself with `margin-left:-150px` (assumes a
+   300px bar). The real default bar is ~249px, so on first open it paints ~27px
+   too far left, then its JS re-measures and snaps right — a visible jump.
+   Match the real half-width so it enters already centered; the package's
+   post-mount inline styles still win for later resizes. */
+body .pa-toolbar-float {
+  margin-left: -124.5px;
 }
