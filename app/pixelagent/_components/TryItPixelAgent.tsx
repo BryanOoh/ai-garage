@@ -2,9 +2,9 @@
 
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import 'pixelagent/style.css';
 
 // PixelAgent uses window/document on mount, so it must be client-only.
+// Styles auto-inject on import (pixelagent 0.1.22+) — no CSS import needed.
 const PixelAgent = dynamic(
   () => import('pixelagent').then((m) => m.PixelAgent),
   { ssr: false }
