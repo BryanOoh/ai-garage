@@ -11,7 +11,7 @@
   "dependencies": {
     "@pixelagent/mcp": "^0.1.21",
     "next": "16.2.6",
-    "pixelagent": "^0.1.22",
+    "pixelagent": "^0.1.23",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
