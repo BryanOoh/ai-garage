@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, DM_Mono } from "next/font/google";
 import { buildPageMetadata } from "@/lib/metadata";
+// Route-scoped: type tokens that drive the "Try it" Text styles picker.
+import "./_styles/text-styles.css";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
